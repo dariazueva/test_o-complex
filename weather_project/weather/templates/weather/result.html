@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Погода в {{ city }}</title>
+</head>
+<body>
+<h2>Погода в {{ city }}</h2>
+<ul>
+    <li>Температура: {{ weather.temperature }} °C</li>
+    <li>Ощущается как: {{ weather.feels_like }} °C</li>
+    <li>Описание: {{ weather.description }}</li>
+    <li>Влажность: {{ weather.humidity }}%</li>
+    <li>Скорость ветра: {{ weather.wind_speed }} м/с</li>
+</ul>
+<a href="/">Назад</a>
+</body>
+</html>
