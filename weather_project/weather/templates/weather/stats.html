@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика</title>
+</head>
+<body>
+<h2>Статистика запросов</h2>
+<ul>
+    {% for item in stats %}
+    <li>{{ item.city }} — {{ item.count }} запрос(ов)</li>
+    {% empty %}
+    <li>Пока нет данных</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'index' %}">Назад</a>
+</body>
+</html>

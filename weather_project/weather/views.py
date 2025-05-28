@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 import requests
 from django.conf import settings
-from django.http import JsonResponse
+from django.db.models import Count
 from django.shortcuts import redirect, render
 
 from .forms import CityForm
@@ -17,9 +17,7 @@ def get_weather(city):
         response = requests.get(url)
         data = response.json()
         if response.status_code != HTTPStatus.OK:
-            return {
-                "error": data.get("message", "Не удалось получить данные о погоде.")
-            }
+            return {"error": "Не удалось найти город."}
         return {
             "temperature": data["main"]["temp"],
             "feels_like": data["main"]["feels_like"],
@@ -54,11 +52,9 @@ def weather_view(request):
 
 
 def city_stats_api(request):
-    from django.db.models import Count
-
-    data = (
+    stats = (
         CitySearch.objects.values("city")
         .annotate(count=Count("city"))
         .order_by("-count")
     )
-    return JsonResponse(list(data), safe=False)
+    return render(request, "weather/stats.html", {"stats": stats})
