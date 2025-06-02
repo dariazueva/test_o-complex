@@ -47,6 +47,12 @@ python -m venv env
 python -m pip install --upgrade pip
 ```
 
+Установите необходимые зависимости:
+
+```bash
+pip install -r requirements.txt
+```
+
 Создайте файл .env и заполните его своими данными по образцу:
 
 ```
